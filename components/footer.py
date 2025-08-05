@@ -4,6 +4,7 @@ from stylesheets import Stylesheet as style
 
 
 def footer_section():
+
     st.markdown(
         f"""
         <style>
@@ -15,7 +16,7 @@ def footer_section():
             padding: 20px 30px;
             font-size: 13pt;
             z-index: 9999;
-            {style.card_selector}
+            {style.card_selector()}
         }}
         </style>
 
