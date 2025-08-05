@@ -1,6 +1,7 @@
 import streamlit as st
 
 from components import footer_section, hero_section
+from stylesheets import Stylesheet
 
 
 # Create toggle (simulates an ON/OFF switch)
