@@ -1,6 +1,6 @@
 import streamlit as st
 
-from stylesheet import card_selector
+from stylesheets.stylesheet import Stylesheet
 
 
 def footer_section():
@@ -15,7 +15,7 @@ def footer_section():
             padding: 20px 30px;
             font-size: 13pt;
             z-index: 9999;
-            {card_selector}
+            {Stylesheet.card_selector}
         }}
         </style>
 
