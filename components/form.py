@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def tone_selector_card():
 
     with st.form("tone_form"):
@@ -22,8 +23,6 @@ def tone_selector_card():
         tone = st.selectbox("Select Interviewer Tone", ["Professional", "Sassy", "Strict"])
         num_questions = st.number_input("Number of Questions", min_value=1, max_value=10, value=3, step=1)
         submitted = st.form_submit_button("Start Interview")
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
     if submitted:
         st.session_state.tone = tone
