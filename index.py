@@ -1,7 +1,6 @@
 import streamlit as st
 
-from components import footer_section, hero_section
-from stylesheets import Stylesheet
+from components import footer_section, hero_section, tone_selector_card
 
 
 # Create toggle (simulates an ON/OFF switch)
@@ -28,6 +27,8 @@ st.markdown(
     .stApp {{
         background-color: {background};
         color: {text_color};
+        display: flex;
+        flex-direction: column;
     }}
 
     div[data-testid="stMarkdownContainer"] > p {{
@@ -39,5 +40,7 @@ st.markdown(
 )
 
 hero_section()
+
+tone_selector_card()
 
 footer_section()

@@ -9,10 +9,6 @@ def footer_section():
         f"""
         <style>
         .custom-footer {{
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             padding: 20px 30px;
             font-size: 13pt;
             z-index: 9999;
