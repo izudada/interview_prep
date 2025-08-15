@@ -22,13 +22,18 @@ def tone_selector_card():
 
         tone = st.selectbox("Select Interviewer Tone", ["Professional", "Sassy", "Strict"])
         num_questions = st.number_input("Number of Questions", min_value=1, max_value=10, value=3, step=1)
-        submitted = st.form_submit_button("Start Interview")
+        text_input = st.text_input("Interviewee Role", max_chars=50)
+        submitted = st.form_submit_button(
+            "Start Interview",
+            type="secondary"
+        )
 
     if submitted:
         st.session_state.tone = tone
         st.session_state.num_questions = num_questions
+        st.session_state.text_input = text_input
         st.session_state.start = True
         st.session_state.current_question = 0
         st.session_state.questions = []
         st.session_state.feedback = []
-        st.experimental_rerun()
+        st.rerun()

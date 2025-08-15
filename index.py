@@ -1,6 +1,11 @@
 import streamlit as st
 
-from components import footer_section, hero_section, tone_selector_card
+from components import (
+    footer_section, 
+    hero_section, 
+    interview_flow,
+    tone_selector_card
+)
 
 
 # Create toggle (simulates an ON/OFF switch)
@@ -24,16 +29,16 @@ else:
 st.markdown(
     f"""
     <style>
-    .stApp {{
-        background-color: {background};
-        color: {text_color};
-        display: flex;
-        flex-direction: column;
-    }}
+        .stApp {{
+            background-color: {background};
+            color: {text_color};
+            display: flex;
+            flex-direction: column;
+        }}
 
-    div[data-testid="stMarkdownContainer"] > p {{
-        color: {text_color};
-    }}
+        div[data-testid="stMarkdownContainer"] > p {{
+            color: {text_color};
+        }}
     </style>
     """,
     unsafe_allow_html=True
@@ -42,5 +47,8 @@ st.markdown(
 hero_section()
 
 tone_selector_card()
+
+if st.session_state.get("start"):
+    interview_flow()
 
 footer_section()
