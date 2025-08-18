@@ -10,9 +10,14 @@ API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("TOGETHER_API_KEY")
 CLIENT = OpenAI(api_key=API_KEY)
 
 
-def get_feedback(question, answer, tone):
+def get_feedback(
+        question, 
+        answer, 
+        # tone
+):
+    # tone_text = "As a {tone.lower()} interviewer, evaluate the following response."
     prompt = f"""
-    As a {tone.lower()} interviewer, evaluate the following response.
+    Evaluate the following response.
 
     Question: {question}
     Answer: {answer}
@@ -33,5 +38,5 @@ def get_feedback(question, answer, tone):
     )
 
     feedback = response.message.content.split("\n") 
-    print("FEEEEEEEEDBAAAAAACK", feedback)
-    return feedback
+    print("FEEEEEEEEDBAAAAAACK", feedback[0])
+    return feedback[0]

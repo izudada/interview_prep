@@ -13,15 +13,21 @@ CLIENT = OpenAI(
 )
 
 
-def generate_questions(tone, num_questions, profession):
+def generate_questions(
+        # tone, 
+        num_questions, 
+        profession,
+        difficulty_level
+):
     import ollama
 
-    tone_text = f"with a {tone.lower()} tone"
+    # tone_text = f"with a {tone.lower()} tone"
     prompt = f"""
     You are an interviewer.
     Generate {num_questions} interview questions suitable for a job candidate 
     for the role of {profession}.
-    Keep them clear and concise.
+    Keep them clear and concise. 
+    Question difficulty level should be {difficulty_level}
     """
 
     response = ollama.chat(
