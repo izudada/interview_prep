@@ -38,5 +38,4 @@ def get_feedback(
     )
 
     feedback = response.message.content.split("\n") 
-    print("FEEEEEEEEDBAAAAAACK", feedback[0])
     return feedback[0]
