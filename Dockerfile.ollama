@@ -1,0 +1,6 @@
+FROM ollama/ollama:latest
+
+# Pre-pull the model into the image
+RUN ollama pull gemma:2b || true
+
+ENTRYPOINT ["ollama", "serve"]

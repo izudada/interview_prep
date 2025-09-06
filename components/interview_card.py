@@ -12,9 +12,17 @@ def interview_flow():
             st.session_state.difficulty_level
         )
 
+        print("Questionsssss", st.session_state.questions)
+        print(type(st.session_state.questions))
+
+        # for chunk in st.session_state.questions:
+        #     print(chunk["message"]["content"], end="", flush=True)
+
+
     current = st.session_state.current_question
     if current < len(st.session_state.questions):
         question = st.session_state.questions[current]
+        
         st.markdown(f"**Question {current + 1}:** {question}")
         answer = st.text_area("Your Answer:", key=f"answer_{current}")
 
