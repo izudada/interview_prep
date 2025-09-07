@@ -22,6 +22,9 @@ services:
       - OLLAMA_HOST=http://ollama:11434
     depends_on:
       - ollama
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
 
 volumes:
   ollama_models:

@@ -37,8 +37,12 @@ def generate_questions(
                 'role': 'system', 
                 'content': prompt
             }
-        ]
+        ],
+        # stream=True
     )
+
+    # for chunk in response:
+    #     print(chunk, "Chunkkkkkkk")
 
     return [
         q.strip() for q in response.message.content.split("\n") 
