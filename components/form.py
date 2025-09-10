@@ -27,12 +27,22 @@ def tone_selector_card():
             "Interviewee Role (eg. Digital Marketer)", 
             max_chars=50
         )
-        submitted = st.form_submit_button(
-            "Start Interview",
-            type="secondary"
-        )
+        # submitted = st.form_submit_button(
+        #     "Start Interview",
+        #     type="secondary"
+        # )
+
+        col1, col2 = st.columns(2)
+        with col1:
+            submitted = st.form_submit_button("Start Interview", type="secondary")
+        with col2:
+            reset = st.form_submit_button("Reset", type="secondary")
 
     if submitted:
+        if not text_input.strip():  # 🚨 enforce required field
+            st.warning("⚠️ Please enter an interviewee role before starting.")
+            return  
+        
         # st.session_state.tone = tone
         st.session_state.difficulty_level = difficulty_level
         st.session_state.num_questions = num_questions

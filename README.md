@@ -28,3 +28,7 @@ Entry point
 ```
 streamlit run index.py
 ```
+
+
+docker exec -it ollama ollama run gemma:2b
+

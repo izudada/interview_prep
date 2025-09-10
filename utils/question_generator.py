@@ -37,7 +37,7 @@ def generate_questions(
                 'role': 'system', 
                 'content': prompt
             }
-        ]
+        ],
     )
 
     return [
