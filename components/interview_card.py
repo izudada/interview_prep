@@ -10,15 +10,7 @@ def interview_flow():
     if current < len(st.session_state.questions):
         question = st.session_state.questions[current]
         
-        st.markdown(f"**Question {current + 1}:**")
-        placeholder = st.empty()   # reserve a placeholder for live updates 
-
-        full_text = ""  # store accumulated text
-        for chunk in question:
-            token = chunk
-            full_text += token
-            placeholder.markdown(full_text)  # update progressively
-            time.sleep(0.02) 
+        st.markdown(f"**Question {current + 1}:** {question}")
 
         answer = st.text_area("Your Answer:", key=f"answer_{current}")
 
