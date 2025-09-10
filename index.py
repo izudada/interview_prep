@@ -9,6 +9,7 @@ from components import (
 from utils.question_generator import generate_questions
 
 
+
 # Create toggle (simulates an ON/OFF switch)
 dark_mode = st.toggle(
     "🌙 Light Mode" if not st.session_state.get("dark_mode", False) else "☀️ Dark Mode"
