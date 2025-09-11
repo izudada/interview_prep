@@ -52,3 +52,13 @@ def tone_selector_card():
         st.session_state.questions = []
         st.session_state.feedback = []
         st.rerun()
+    
+        # Handle reset
+    if reset:
+        for key in ["difficulty_level", "num_questions", "text_input", "start", "current_question", "questions", "feedback"]:
+            if key in st.session_state:
+                del st.session_state[key]
+                
+        st.session_state.reset = True
+        st.success("✅ Form has been reset!")
+        st.rerun()
