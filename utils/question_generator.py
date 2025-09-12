@@ -1,16 +1,23 @@
 import os
 
 from dotenv import load_dotenv
+import google.generativeai as genai
 from openai import OpenAI
 
-load_dotenv() 
 
-API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("TOGETHER_API_KEY")
+load_dotenv()
 
-CLIENT = OpenAI(
-    api_key="ollama",
-    base_url="http://localhost:11434/v1"
-)
+# Load API key from .env
+load_dotenv()
+
+API_KEY = os.getenv("G_TOKEN")
+if not API_KEY:
+    raise RuntimeError("Missing GEMINI_API_KEY in environment")
+
+genai.configure(api_key=API_KEY)
+
+# Choose model (Gemini 1.5 Pro = strong reasoning, Gemini 1.5 Flash = fast/cheap)
+DEFAULT_MODEL = "gemini-1.5-flash"
 
 
 def generate_questions(
@@ -19,28 +26,20 @@ def generate_questions(
         profession,
         difficulty_level
 ):
-    import ollama
 
     # tone_text = f"with a {tone.lower()} tone"
-    prompt = f"""
+    system_prompt = f"""
     You are an interviewer.
-    Generate {num_questions} interview questions suitable for a job candidate 
+    Generate {num_questions} concise interview questions for a candidate applying
     for the role of {profession}.
-    Keep them clear and concise. 
-    Question difficulty level should be {difficulty_level}
+    Difficulty: {difficulty_level}.
+    Return the questions as a simple numbered list.
     """
 
-    response = ollama.chat(
-        model='gemma:2b',  # or 'gemma:7b' if you have enough RAM space
-        messages=[
-            {
-                'role': 'system', 
-                'content': prompt
-            }
-        ],
-    )
+    model = genai.GenerativeModel(DEFAULT_MODEL)
+    response = model.generate_content(system_prompt)
 
-    return [
-        q.strip() for q in response.message.content.split("\n") 
-        if q.strip() and "question"not in q.strip().lower()
-    ]
+    # Parse response into clean list
+    text = response.text.strip()
+    lines = [l.strip("0123456789. )-") for l in text.splitlines() if l.strip()]
+    return lines[:num_questions]

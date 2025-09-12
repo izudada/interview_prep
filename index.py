@@ -26,5 +26,6 @@ if st.session_state.get("start"):
             st.session_state.text_input,
             st.session_state.difficulty_level
         )
+        print(st.session_state.questions, "QUESTIONSSSS")
         
     interview_flow()

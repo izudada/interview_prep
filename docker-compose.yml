@@ -1,15 +1,6 @@
 version: "3.9"
-services:
-  ollama:
-    build:
-      context: .
-      dockerfile: Dockerfile.ollama   # custom Ollama build
-    container_name: ollama
-    volumes:
-      - ollama_models:/root/.ollama   # persist models across restarts
-    ports:
-      - "11435:11434"   # map container port 11434 -> host 11435
 
+services:
   streamlit:
     build: .
     container_name: streamlit-app
@@ -17,14 +8,6 @@ services:
       - .:/app
     ports:
       - "8502:8502"
-    environment:
-      # notice: use service name + internal container port
-      - OLLAMA_HOST=http://ollama:11434
-    depends_on:
-      - ollama
     stdin_open: true
     tty: true
     restart: unless-stopped
-
-volumes:
-  ollama_models:

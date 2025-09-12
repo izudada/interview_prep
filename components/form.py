@@ -27,10 +27,6 @@ def tone_selector_card():
             "Interviewee Role (eg. Digital Marketer)", 
             max_chars=50
         )
-        # submitted = st.form_submit_button(
-        #     "Start Interview",
-        #     type="secondary"
-        # )
 
         col1, col2 = st.columns(2)
         with col1:
@@ -58,7 +54,7 @@ def tone_selector_card():
         for key in ["difficulty_level", "num_questions", "text_input", "start", "current_question", "questions", "feedback"]:
             if key in st.session_state:
                 del st.session_state[key]
-                
+
         st.session_state.reset = True
         st.success("✅ Form has been reset!")
         st.rerun()

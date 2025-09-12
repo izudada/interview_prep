@@ -1,13 +1,17 @@
 import os
-
+import google.generativeai as genai
 from dotenv import load_dotenv
-from openai import OpenAI
 
-load_dotenv() 
+load_dotenv()
 
-API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("TOGETHER_API_KEY")
+API_KEY = os.getenv("G_TOKEN")
+if not API_KEY:
+    raise RuntimeError("Missing GEMINI_API_KEY in environment")
 
-CLIENT = OpenAI(api_key=API_KEY)
+genai.configure(api_key=API_KEY)
+
+# Choose model (Gemini 1.5 Pro = strong reasoning, Gemini 1.5 Flash = fast/cheap)
+DEFAULT_MODEL = "gemini-1.5-flash"
 
 
 def get_feedback(
@@ -16,26 +20,15 @@ def get_feedback(
         # tone
 ):
     # tone_text = "As a {tone.lower()} interviewer, evaluate the following response."
-    prompt = f"""
-    Evaluate the following response.
+
+    system_prompt = f"""
+    You are an interview coach.
+    Evaluate the following response in 2-3 sentences with constructive feedback.
 
     Question: {question}
     Answer: {answer}
-
-    Provide specific feedback in 2-3 sentences.
     """
-    import ollama
 
-
-    response = ollama.chat(
-        model='gemma:2b',  # or 'gemma:7b' if you have enough RAM space
-        messages=[
-            {
-                'role': 'system', 
-                'content': prompt
-            }
-        ]
-    )
-
-    feedback = response.message.content.split("\n") 
-    return feedback[0]
+    model = genai.GenerativeModel(DEFAULT_MODEL)
+    response = model.generate_content(system_prompt)
+    return response.text.strip()
