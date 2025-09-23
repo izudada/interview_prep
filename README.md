@@ -2,7 +2,8 @@
 
 An interactive interview practice app built with Streamlit, Gemini API, and Docker.
 The app generates role-specific interview questions and provides real-time AI feedback on your answers.
-
+<br>
+<br>
 
 ## ✨ Features
 
@@ -15,8 +16,8 @@ The app generates role-specific interview questions and provides real-time AI fe
 - 📦 Dockerized for easy deployment
 
 - 🔄 Option to run with Gemini API (cloud) or Ollama (local LLM)
-
-
+<br>
+<br>
 
 ## 🛠️ Tech Stack
 
@@ -29,7 +30,8 @@ The app generates role-specific interview questions and provides real-time AI fe
 - Containerization → Docker + Docker Compose
 
 - Language → Python 3.10+
-
+<br>
+<br>
 
 ## 📦 Installation
 
@@ -49,6 +51,8 @@ Install dependencies:
 ``` 
 pip install -r requirements.txt 
 ```
+<br>
+<br>
 
 
 ## 🔑 Environment Variables
@@ -61,6 +65,8 @@ GEMINI_API_KEY=your_gemini_api_key_here
 # For Ollama (optional local model setup)
 OLLAMA_HOST=http://localhost:11434
 ```
+<br>
+<br>
 
 ## 🚀 Running Locally
 
@@ -81,6 +87,8 @@ Then run the docker container using:
 ```
 make up
 ```
+<br>
+<br>
 
 ## 🖥️ Usage
 1. Select difficulty level and role in the sidebar.
@@ -92,7 +100,8 @@ make up
 4. Get personalized feedback in real-time.
 
 5. Reset anytime to start fresh.
-
+<br>
+<br>
 
 ## 🏗️ Architecture
 
@@ -101,6 +110,8 @@ make up
 - Gemini API or Ollama (LLM backend)
 
 - Docker (containerization for deployment consistency)
+<br>
+<br>
 
 
 ## 📊 Performance & Scalability
@@ -111,7 +122,8 @@ make up
 
 - Load testing → You can use Locust
  or ab to simulate 50+ concurrent users.
-
+<br>
+<br>
 
 ## 🔮 Roadmap
 
@@ -122,7 +134,8 @@ make up
 - Export feedback to PDF/CSV
 
 - Multi-user support with database integration
-
+<br>
+<br>
 
 ## 📚 Resources
 
